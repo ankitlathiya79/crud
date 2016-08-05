@@ -64,7 +64,9 @@ class CrudController extends Controller
      */
     public function edit($id)
     {
-        //
+        $crud=Crud::find($id);
+        return view('crud.edit',compact('crud'));
+
     }
 
     /**
@@ -76,7 +78,12 @@ class CrudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $crud=Crud::find($id);
+        $crud->name= $request->get('name');
+        $crud->surname= $request->get('surname');
+        $crud->save();
+        return redirect('crud');
+
     }
 
     /**
