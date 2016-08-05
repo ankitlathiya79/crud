@@ -15,7 +15,8 @@ class CrudController extends Controller
      */
     public function index()
     {
-        //
+        $cruds=Crud::all();
+        return view('crud.index',compact('cruds'));
     }
 
     /**
@@ -25,7 +26,7 @@ class CrudController extends Controller
      */
     public function create()
     {
-        //
+        return view('crud.create');
     }
 
     /**
@@ -36,7 +37,12 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $crud=new Crud(array('name'=>$request->get('name'),
+            'surname'=>$request->get('surname')));
+       
+        $crud->save();
+        return view('crud.index');
+
     }
 
     /**
@@ -81,6 +87,14 @@ class CrudController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $crud=Crud::find($id);
+        $crud->delete();
+        return redirect('crud');
+    }
+    public function delete($id)
+    {
+        $crud=Crud::find($id);
+        $crud->delete();
+        return redirect('crud');
     }
 }

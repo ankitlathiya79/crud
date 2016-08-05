@@ -20,3 +20,4 @@ Route::resource('crud','CrudController');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('crud/{id}/delete','CrudController@delete');
